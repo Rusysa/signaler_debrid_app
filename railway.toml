@@ -1,0 +1,14 @@
+# railway.toml — configuración declarativa del deploy en Railway
+# Referencia: https://docs.railway.com/reference/config-as-code
+
+[build]
+# Railway detecta el Dockerfile automáticamente; esta línea es explícita por claridad
+dockerfilePath = "Dockerfile"
+
+[deploy]
+# healthcheck: Railway verifica que el servicio esté vivo después del deploy
+# weron signaler expone HTTP en la raíz (devuelve 200)
+healthcheckPath = "/"
+healthcheckTimeout = 30       # segundos antes de marcar el deploy como fallido
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
